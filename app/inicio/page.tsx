@@ -21,9 +21,11 @@ import { AspectRatio } from "@/components/ui/aspect-ratio"
 import Image from "next/image"
 import { Textarea } from "@/components/ui/textarea"
 import { StarRating } from "@/components/ui/star"
+import { useState } from "react"
 
 
 export default function MenubarDemo() {
+  const [rating, setRating] = useState(0)
 
   return (
     <section className=" flex flex-col justify-center items-center w-full h-screen bg-gray-500">
@@ -135,13 +137,12 @@ export default function MenubarDemo() {
             </MenubarMenu>
             </Menubar>
         </header>
-            <div className="flex items-center justify-center h-full w-full   ">
-                <form className="flex flex-row items-center bg-black w-250 h-120 rounded-lg ">
-                    <AspectRatio ratio={16 / 9} className="w-60 justify-start h-full rounded-lg bg-muted"></AspectRatio>
-                    <div className="h-80 rounded-50"></div>
-                    <div className="relative size-32 flex flex-col relative static items-center justify-center h-full m-12 mt-15 ">
-                        <Textarea className="flex absolute top-30 left-110 h-50 w-180 p-2 bg-transparent rounded-md text-white" placeholder="Digite seu Comentário..."/>
-                        <StarRating value={0} onChange={() => {}}/>
+            <div className="flex items-center justify-center h-full w-full px-4">
+                <form className="flex flex-col md:flex-row items-stretch bg-black w-full max-w-4xl rounded-lg overflow-hidden">
+                    <AspectRatio ratio={16 / 9} className="w-full md:w-60 rounded-lg bg-muted"></AspectRatio>
+                    <div className="flex flex-col gap-3 flex-1 p-4">
+                        <Textarea className="w-full min-h-32 p-2 bg-transparent rounded-md text-white" placeholder="Digite seu Comentário..."/>
+                        <StarRating value={rating} onChange={setRating}/>
                     </div>
                 </form>
             </div>
