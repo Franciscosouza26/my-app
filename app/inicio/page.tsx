@@ -21,7 +21,10 @@ import { AspectRatio } from "@/components/ui/aspect-ratio"
 import Image from "next/image"
 import { Textarea } from "@/components/ui/textarea"
 import { StarRating } from "@/components/ui/star"
-import { useState } from "react"
+import { useState, useRef} from "react"
+import { cn } from "@/lib/utils"
+import { CdCover } from "@/components/ui/cd"
+
 
 
 export default function MenubarDemo() {
@@ -138,11 +141,16 @@ export default function MenubarDemo() {
             </Menubar>
         </header>
             <div className="flex items-center justify-center h-full w-full px-4">
-                <form className="flex flex-col md:flex-row items-stretch bg-black w-full max-w-4xl rounded-lg overflow-hidden">
-                    <AspectRatio ratio={16 / 9} className="w-full md:w-60 rounded-lg bg-muted"></AspectRatio>
+                <form className="flex flex-col md:flex-row items-center bg-black w-full max-w-4xl h-full max-h-96 rounded-lg">
+                    <div className="p-4">
+                        <CdCover/>
+                    </div>
                     <div className="flex flex-col gap-3 flex-1 p-4">
+                        <div className="flex flex-row gap-2">
+                            <StarRating value={rating} onChange={setRating}/>
+                            <input className="bg-transparent text-white font-bold !caret-transparent" type="number"></input>
+                        </div>
                         <Textarea className="w-full min-h-32 p-2 bg-transparent rounded-md text-white" placeholder="Digite seu Comentário..."/>
-                        <StarRating value={rating} onChange={setRating}/>
                     </div>
                 </form>
             </div>
